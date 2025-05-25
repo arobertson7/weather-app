@@ -40,7 +40,7 @@ const weatherAPI = (function () {
         const location = document.getElementById("location");
         location.textContent = weatherObj.location;
         const currentWeatherInfo = document.getElementById("current-weather-info");
-        currentWeatherInfo.textContent = `${weatherObj.currentWeatherConditions} / ${weatherObj.currentTemp}° F`;
+        currentWeatherInfo.textContent = `${weatherObj.currentWeatherConditions} | ${weatherObj.currentTemp}° F`;
         const currentWeatherIcon = document.getElementById('current-weather-icon');
         currentWeatherIcon.textContent = getWeatherIcon(weatherObj.sevenDayForecast[0].iconString);
 
@@ -104,6 +104,86 @@ const weatherAPI = (function () {
         }, 2500);
     }
 
+    const toggleTempUnit = function(selectedUnit) {
+        const farenheitButton = document.getElementById('farenheit');
+        const celsiusButton = document.getElementById('celsius');
+
+        if (selectedUnit == 'celsius') {
+            // change button styles
+            farenheitButton.classList.remove('selected-temp-unit');
+            celsiusButton.classList.add('selected-temp-unit');
+
+            // convert 'current temp' unit
+            let currentWeatherElement = document.getElementById('current-weather-info');
+            let currentWeatherMessage = currentWeatherElement.textContent;
+            let index = 0;
+            while (index < currentWeatherMessage.length && currentWeatherMessage[index] != '|') {
+                index++;
+            }
+            index += 2;
+            let temp = parseInt(currentWeatherMessage.substring(index, currentWeatherMessage.indexOf('°')));
+            let convertedTemp = toCelsius(temp);
+
+            const convertedWeatherMessage = currentWeatherMessage.substring(0, index) + convertedTemp + '° C';
+            currentWeatherElement.textContent = convertedWeatherMessage;
+
+            // convert '7-day forecast' temps
+            let dayLows = document.querySelectorAll('.day-low');
+            for (let i = 0; i < dayLows.length; i++) {
+                temp = parseInt(dayLows[i].textContent.substring(0, 2));
+                convertedTemp = toCelsius(temp);
+                dayLows[i].textContent = convertedTemp + '° C';
+            }
+            let dayHighs = document.querySelectorAll('.day-high');
+            for (let i = 0; i < dayHighs.length; i++) {
+                temp = parseInt(dayHighs[i].textContent.substring(0, 2));
+                convertedTemp = toCelsius(temp);
+                dayHighs[i].textContent = convertedTemp + '° C';
+            }
+        }
+        else if (selectedUnit == 'fahrenheit') {
+            // change button styles
+            celsiusButton.classList.remove('selected-temp-unit');
+            farenheitButton.classList.add('selected-temp-unit');
+
+            // convert 'current temp' unit
+            let currentWeatherElement = document.getElementById('current-weather-info');
+            let currentWeatherMessage = currentWeatherElement.textContent;
+            let index = 0;
+            while (index < currentWeatherMessage.length && currentWeatherMessage[index] != '|') {
+                index++;
+            }
+            index += 2;
+            let temp = parseInt(currentWeatherMessage.substring(index, currentWeatherMessage.indexOf('°')));
+            let convertedTemp = toFahrenheit(temp);
+
+            const convertedWeatherMessage = currentWeatherMessage.substring(0, index) + convertedTemp + '° F';
+            currentWeatherElement.textContent = convertedWeatherMessage;
+
+            // convert '7-day forecast' temps
+            let dayLows = document.querySelectorAll('.day-low');
+            for (let i = 0; i < dayLows.length; i++) {
+                temp = parseInt(dayLows[i].textContent.substring(0, 2));
+                convertedTemp = toFahrenheit(temp);
+                dayLows[i].textContent = convertedTemp + '° F';
+            }
+            let dayHighs = document.querySelectorAll('.day-high');
+            for (let i = 0; i < dayHighs.length; i++) {
+                temp = parseInt(dayHighs[i].textContent.substring(0, 2));
+                convertedTemp = toFahrenheit(temp);
+                dayHighs[i].textContent = convertedTemp + '° F';
+            }
+        }
+    }
+
+    const toCelsius = function(temp) {
+        return Math.round((temp - 32) / (9/5));
+    }
+
+    const toFahrenheit = function(temp) {
+        return Math.round((temp * (9/5)) + 32);
+    }
+
     // helper function for return weather emoji based on the 'icon' property recieved from apir request
     const getWeatherIcon = function(weatherDescription) {
         switch(true) {
@@ -152,7 +232,7 @@ const weatherAPI = (function () {
         return formatted;
     };
 
-    return { handleNewSearch };
+    return { handleNewSearch, toggleTempUnit };
 })();
 
 export default weatherAPI;

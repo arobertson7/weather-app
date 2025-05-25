@@ -46,3 +46,16 @@ nextButton.addEventListener("click", function() {
 prevButton.addEventListener("click", function() {
     sevenDaySlideshow.slideShow(sevenDaySlidesContainer, navDotContainer, 'prev');
 })
+
+const farenheitButton = document.getElementById('farenheit');
+const celsiusButton = document.getElementById('celsius');
+farenheitButton.addEventListener('click', function() {
+    if (!farenheitButton.classList.contains('selected-temp-unit')) {
+        weatherAPI.toggleTempUnit('fahrenheit');
+    }
+})
+celsiusButton.addEventListener('click', function() {
+    if (!celsiusButton.classList.contains('selected-temp-unit')) {
+        weatherAPI.toggleTempUnit('celsius');
+    }
+})
