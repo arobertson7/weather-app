@@ -3,7 +3,6 @@ import './styles.css';
 import sevenDaySlideshow from "./imageCarousel.js";
 
 weatherAPI.handleNewSearch('new york');
-
 const sevenDaySlidesContainer = document.getElementById("days-slide-container");
 const navDotContainer = document.getElementById("nav-dots");
 sevenDaySlideshow.slideShow(sevenDaySlidesContainer, navDotContainer, 'initialization');

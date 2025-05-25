@@ -204,7 +204,7 @@ header input:focus {
 }
 
 .description {
-    top: -5px;
+    top: -10px;
     position: relative;
     /* bottom: -10px; */
     text-align: center;
@@ -224,7 +224,7 @@ header input:focus {
 .maxTemp, .minTemp {
     display: flex;
     gap: 10px;
-    font-weight: 600;
+    font-weight: 550;
 }
 
 .temp-divider {
