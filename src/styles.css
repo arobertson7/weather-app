@@ -1,0 +1,272 @@
+/* RESET */
+
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+  font-family: "Red Hat Display";
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+/* *********************************************************************************************************************************** */
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+header {
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+    height: 8%;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    box-shadow: 1.2px 1.2px 5px 2px rgba(0, 0, 0, 0.128);
+}
+
+header input {
+    padding-left: 5px;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.551);
+    transition: opacity 0.5s ease;
+}
+
+header input:focus {
+    outline: none;
+}
+
+#search-error-message {
+    position: absolute;
+    left: 30%;
+    transition: opacity 1s ease;
+}
+
+#search-button {
+    background: linear-gradient(to bottom right, white, 1%, rgb(25, 97, 199));
+    color: white;
+    height: 60%;
+    border: none;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    /* font-size: 0.9rem; */
+}
+
+#content {
+    width: 100%;
+    height: 92%;
+    /* background: linear-gradient(to bottom, rgb(15, 89, 164), 8%, rgb(93, 149, 205)); */
+    background: linear-gradient(to bottom, rgb(93, 149, 205), 30%, rgb(15, 89, 164));
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    color: white;
+}
+
+#weather-info {
+    width: 90%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    gap: 80px;
+    /* background-color: rgba(245, 245, 245, 0.791);
+    box-shadow: inset 1.2px 1.2px 5px 2px rgba(0, 0, 0, 0.128); */
+}
+
+.weather-info-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+#current-weather {
+    display: flex;
+    gap: 10px;
+    font-size: 1.2rem;
+    text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.285);
+}
+
+#location {
+    font-size: 2rem;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.285);
+}
+
+#seven-day-forecast-container {
+    position: relative;
+    width: 100%;
+    height: 60%;
+    border-radius: 10px;
+    padding: 20px;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    background-color: rgba(245, 245, 245, 0.791);
+    box-shadow: inset 1.2px 1.2px 5px 2px rgba(0, 0, 0, 0.128);
+}
+
+#seven-day-forecast-container > h3 {
+    position: absolute;
+    top: -35px;
+    color: white;
+    text-shadow: 0.8px 0.8px 1px rgba(0, 0, 0, 0.285);
+}
+
+#days-slide-container {
+    position: relative;
+    width: 100%;
+    height: 90%;
+    /* border: 1px solid blue; */
+}
+
+.day-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: opacity 0.5s ease;
+}
+
+.day {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.weather-icon {
+    position: relative;
+    top: -15px;
+    font-size: 2.2rem;
+}
+
+.description {
+    top: -5px;
+    position: relative;
+    /* bottom: -10px; */
+    text-align: center;
+}
+
+.temps {
+    position: relative;
+    width: 80%;
+    top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    
+}
+
+.maxTemp, .minTemp {
+    display: flex;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.temp-divider {
+    font-size: 2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#nav-dots {
+  position: relative;
+  top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 15px;
+}
+
+#nav-dots img {
+  width: 13px;
+}
+
+.next-slide-button, .prev-slide-button {
+  position: absolute;
+  top: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: 10px;
+}
+
+.next-slide-button {
+  right: 10px;
+}
+
+.prev-slide-button {
+  left: 10px;
+}
+
+.next-slide-button img, .prev-slide-button img {
+  width: 40px;
+}
+
