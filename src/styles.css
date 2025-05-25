@@ -170,7 +170,7 @@ header input:focus {
 #seven-day-forecast-container > h3 {
     position: absolute;
     top: -35px;
-    color: white;
+    color: rgba(255, 255, 255, 0.868);
     text-shadow: 0.8px 0.8px 1px rgba(0, 0, 0, 0.285);
 }
 
